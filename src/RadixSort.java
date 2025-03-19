@@ -14,7 +14,7 @@ public class RadixSort {
     private static void countSort(String[] arr, int charIndex) {
         int n = arr.length;
         Map<Integer, List<String>> buckets = new HashMap<>();
-
+        //1-26 letters = 26 buckets and an extra empty space for the short words.
         for (int i = 0; i < 27; i++) {
             buckets.put(i, new ArrayList<>());
         }
@@ -41,7 +41,6 @@ public class RadixSort {
 
     public void radixSort(String[] arr) {
         int maxLength = getMaxStringLength(arr);
-
         for (int pos = maxLength - 1; pos >= 0; pos--) {
             countSort(arr, pos);
         }

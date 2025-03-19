@@ -9,7 +9,9 @@ public class Main {
                 "amazon", "puppy", "hydra", "amazonia", "vueltiao"};
         String[] arr2 = {"peter", "jayden", "chris", "navi"};
         rs.radixSort(arr);
+        rs.radixSort(arr2);
         System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(arr2));
 
     }
 
