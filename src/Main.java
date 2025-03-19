@@ -1,7 +1,5 @@
 import java.util.Arrays;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         RadixSort rs = new RadixSort();
@@ -16,6 +14,32 @@ public class Main {
         System.out.println(Arrays.toString(arr));
         System.out.println(Arrays.toString(arr2));
         System.out.println(Arrays.toString(arr3));
+
+        WordPattern wp = new WordPattern();
+        String pattern = "abba";
+        char delimiter = '?';
+        String s = "dog?cat?cat?dog";
+
+        String pattern2 = "abba";
+        char delimiter2 = '|';
+        String s2 = "apple|banana|grape|apple";
+
+        String pattern3 = "aaaa";
+        char delimiter3 = ',';
+        String s3 = "dog,cat,cat,dog";
+
+        String pattern4 = "adxp";
+        char delimiter4 = ' ';
+        String s4 = "ice cream taco day";
+
+        System.out.println(wp.isFollowPattern(pattern,delimiter,s));
+        System.out.println(wp.isFollowPattern(pattern2,delimiter2,s2));
+        System.out.println(wp.isFollowPattern(pattern3,delimiter3,s3));
+        System.out.println(wp.isFollowPattern(pattern4,delimiter4,s4));
+
+
+
+
 
     }
 
