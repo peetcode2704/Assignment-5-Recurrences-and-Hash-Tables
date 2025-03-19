@@ -2,8 +2,7 @@ import java.util.*;
 public class RadixSort {
     private static int getMaxStringLength(String[] arr) {
         int maxLength = 0;
-        for (int i = 0; i < arr.length; i++) {
-            String s = arr[i];
+        for (String s : arr) {
             if (s.length() > maxLength) {
                 maxLength = s.length();
             }
@@ -14,27 +13,34 @@ public class RadixSort {
     private static void countSort(String[] arr, int charIndex) {
         int n = arr.length;
         Map<Integer, List<String>> buckets = new HashMap<>();
-        //1-26 letters = 26 buckets and an extra empty space for the short words.
-        for (int i = 0; i < 27; i++) {
+
+        // 53 buckets: 1-26 for A - Z, 27-52 for a-z, 0 for short words.
+        for (int i = 0; i < 53; i++) {
             buckets.put(i, new ArrayList<>());
         }
 
-        for (int i = 0; i < n; i++) {
-            String s = arr[i];
+        for (String s : arr) {
             int bucketIndex;
             if (charIndex < s.length()) {
-                bucketIndex = s.charAt(charIndex) - 'a' + 1;
+                char ch = s.charAt(charIndex);
+                if (Character.isUpperCase(ch)) {
+                    bucketIndex = ch - 'A' + 1;
+                } else if (Character.isLowerCase(ch)) {
+                    bucketIndex = ch - 'a' + 27;
+                } else {
+                    bucketIndex = 0;
+                }
             } else {
-                bucketIndex = 0;
+                bucketIndex = 0; //this bucket handles the short words.
             }
-            buckets.get(bucketIndex).add(s);
+            buckets.get(bucketIndex).add(s); //add
         }
 
         int index = 0;
-        for (int i = 0; i < 27; i++) {
+        for (int i = 0; i < 53; i++) {
             List<String> bucket = buckets.get(i);
-            for (int j = 0; j < bucket.size(); j++) {
-                arr[index++] = bucket.get(j);
+            for (String word : bucket) {
+                arr[index++] = word;
             }
         }
     }
@@ -45,5 +51,4 @@ public class RadixSort {
             countSort(arr, pos);
         }
     }
-
 }
